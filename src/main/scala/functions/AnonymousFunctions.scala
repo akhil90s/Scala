@@ -6,6 +6,10 @@ object AnonymousFunctions extends App {
   val doubler1: Int => Int = (x: Int) => x * 2
   val doubler2 = (x: Int) => x * 2
 
+  // multiplier
+  val multiplier: (Int, Int) => Int = (x: Int, y: Int) => x * y;
+  println(multiplier(5, 7))
+
   // multiple params in a lambda
   val adder1: (Int, Int) => Int = (a: Int, b: Int) => a + b
   val adder2 = (x: Int, y: Int) => x + y

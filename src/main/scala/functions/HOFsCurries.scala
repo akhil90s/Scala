@@ -35,6 +35,10 @@ object HOFsCurries extends App {
   println(add3(10))
   println(superAdder(3)(10))
 
+  val supermultiplier: Int => (Int => Int) = (x: Int) => (y: Int) => x * y
+  val multiplier3 = supermultiplier(3)
+  println(multiplier3(5))
+
   // functions with multiple parameter lists
   def curriedFormatter(c: String)(x: Double): String = c.format(x)
 
@@ -53,13 +57,14 @@ object HOFsCurries extends App {
   }
 
   def orderFood(cuisine: String): String => String = {
-    val indianFood  = (food: String) => s"Cuisine : $cuisine ; Dish : $food"
+    val indianFood = (food: String) => s"Cuisine : $cuisine ; Dish : $food"
     val europeanFood = (food: String) => s"Cuisine : $cuisine ; Dish : $food"
     cuisine match {
       case "indian" => indianFood
       case "european" => europeanFood
     }
   }
+
   val europeanFood = orderFood("european")
   println(europeanFood("Pasta"))
 

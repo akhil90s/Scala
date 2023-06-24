@@ -4,6 +4,7 @@ import scala.util.Random
 
 object PatternMatching extends App {
 
+  // Constant Pattern Matching
   val random = new Random()
   val x = random.nextInt(10)
   val randomMatch: String = x match {
@@ -18,6 +19,7 @@ object PatternMatching extends App {
   println(x)
   println(randomMatch)
 
+  // Construntor Pattern Matching
   case class Person(name: String, age: Int)
 
   val john = Person("John Page", 25)
@@ -30,9 +32,11 @@ object PatternMatching extends App {
   println(greeting)
 
 
-  // PM on sealed hierarchies
+  // Pattern Matching on sealed hierarchies using case classes
   sealed class Animal
+
   case class Dog(breed: String) extends Animal
+
   case class Parrot(greeting: String) extends Animal
 
   val animal: Animal = Dog("Terra Nova")
@@ -41,8 +45,11 @@ object PatternMatching extends App {
   }
 
   sealed trait Notification
+
   case class Email(sender: String, title: String, body: String) extends Notification
+
   case class SMS(caller: String, message: String) extends Notification
+
   case class VoiceRecording(contactName: String, link: String) extends Notification
 
   def showNotification(notification: Notification): String = {
@@ -64,16 +71,20 @@ object PatternMatching extends App {
   println(showNotification(someEmail))
 
   sealed trait Device
+
   case class Phone(model: String) extends Device {
     def screenOff = "Turning screen off"
   }
+
   case class Computer(model: String) extends Device {
     def screenSaverOn = "Turning screen saver on..."
   }
+
   def goIdle(device: Device): String = device match {
     case p: Phone => p.screenOff
     case c: Computer => c.screenSaverOn
   }
+
   val phone = Phone("iPhone")
   println(goIdle(phone))
 
@@ -148,17 +159,6 @@ object PatternMatching extends App {
     case npe: NullPointerException => npe.printStackTrace()
     case _ => "something else"
   }
-  /*
-    try {
-      // code
-    } catch (e) {
-      e match {
-        case e: RuntimeException => "runtime"
-        case npe: NullPointerException => "npe"
-        case _ => "something else"
-      }
-    }
-   */
 
   // Generators are also based on PATTERN MATCHING
   val nums = List[Int](1, 2, 3, 4, 5)
@@ -190,7 +190,6 @@ object PatternMatching extends App {
     case v if v % 2 == 0 => v + " is even"
     case 1 => "the one"
     case _ => "something else"
-      0
   } // partial function literal
   println(mappedList1)
 
@@ -202,6 +201,7 @@ object PatternMatching extends App {
     }
   }
   println(mappedList2)
+
 
 
 }
